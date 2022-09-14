@@ -2,13 +2,13 @@ import styles from './Login.module.css'
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { login } from '../../redux/auth-reducer';
 
 const Login = () => {
-    const dispatch = useDispatch
+    const dispatch = useDispatch()
 
     const onFinish = (values) => {
-      dispatch(setAuthUserData(values))
-      console.log(values)
+      dispatch(login(values))
     }
 
     const onFinishFailed = (errorInfo) => {
@@ -53,7 +53,7 @@ const Login = () => {
             <Input.Password />
         </Form.Item>
 
-        <Form.Item
+        {/* <Form.Item
             name="remember"
             valuePropName="checked"
             wrapperCol={{
@@ -62,7 +62,7 @@ const Login = () => {
             }}
         >
             <Checkbox>Remember me</Checkbox>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
             wrapperCol={{
