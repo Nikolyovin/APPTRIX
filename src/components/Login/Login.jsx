@@ -1,11 +1,14 @@
 import styles from './Login.module.css'
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
     const dispatch = useDispatch()
+
+    const isAuth = useSelector(state => state.auth.isAuth)
 
     const onFinish = (values) => {
       dispatch(login(values))
@@ -15,17 +18,23 @@ const Login = () => {
       console.log('Failed:', errorInfo)
     }
 
+    console.log('erp_user')
+    console.log('12qwaszx12qwaszx')
+
+    if (isAuth) {
+        return <Navigate to = {"/users"}/>
+    }
+
   return (
     <div className = { styles.formWrap }>
         <Form
-        name="basic"
-        labelCol={{span: 8,}}
-        wrapperCol={{span: 16,}}
-        initialValues={{remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+            name="basic"
+            labelCol={{span: 8,}}
+            wrapperCol={{span: 6,}}
+            initialValues={{remember: true}}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
         >
         <Form.Item
             label="Username"
@@ -52,17 +61,6 @@ const Login = () => {
         >
             <Input.Password />
         </Form.Item>
-
-        {/* <Form.Item
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{
-            offset: 8,
-            span: 16,
-            }}
-        >
-            <Checkbox>Remember me</Checkbox>
-        </Form.Item> */}
 
         <Form.Item
             wrapperCol={{
