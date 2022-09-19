@@ -12,6 +12,14 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    height: 50px;
+}
+
+.iconWrap {
+    padding: 3px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title{
@@ -21,6 +29,14 @@
     text-align: center;
     color: #efefef;
     margin: 0;
+}
+
+.gagLeft{
+    width: 50px;
+}
+
+.gagRight{
+    width: 74px;
 }
 
 .button{

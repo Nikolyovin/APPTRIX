@@ -1,15 +1,14 @@
 import axios from "axios"
-import { API_AUTH, API_URL } from "../http"
+import { API_AUTH } from "../http"
 import AuthService from "../services/AuthService"
 
 const SET_USER_DATA = "SET_USER_DATA"
+const IS_SHHOW_LOADING = "IS_SHHOW_LOADING"
 
-const initialState = {
-    userId: null,
-    email: null,
+const initialState = { 
     username: null,
     isAuth: false,
-    password: null
+    isLoading: false,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -19,14 +18,20 @@ const authReducer = (state = initialState, action) => {
                ...state,
                ...action.payload
             }
-            
+        
+            case IS_SHHOW_LOADING:
+            return {
+               ...state,
+               isLoading: action.isLoading
+            }
+
         default:
             return state 
     }
 }
-///потом удалить пароль из стейта
-//убрать isAuth из логина
+
 export const setAuthUserData = (username, isAuth) => ({ type: SET_USER_DATA, payload: { username, isAuth } })
+export const isShowLoading = (isLoading) => ({type: IS_SHHOW_LOADING, isLoading})
 
 export const login = ({ username, password }) => async (dispatch) => {
     try {
@@ -53,16 +58,25 @@ export const logout = () => async (dispatch) => {
 }
 
 export const checkAuth = () => async (dispatch) => {
+    
+    dispatch(isShowLoading(true))
+    
     try {
         const response = await axios.post(`${API_AUTH}/token/refresh/`, {
             refresh: localStorage.getItem('refresh')
-        })
+        },
+        { withCredentials: true })
+        
         localStorage.setItem('access', response.data.access)
         const username = localStorage.getItem('username')
         dispatch(setAuthUserData(username,  true))
-        console.log('*********************test')
+        
     } catch (e) {
         console.log(e)
+    } finally {
+        
+        dispatch(isShowLoading(false))
+       
     }
 }
 
