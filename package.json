@@ -1,6 +1,8 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "proxy": "https://demo-apptrix.myjetbrains.com",
+  "homepage": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

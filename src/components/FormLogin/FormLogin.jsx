@@ -8,8 +8,9 @@ import { Navigate } from 'react-router-dom';
 const FormLogin = () => {
     const dispatch = useDispatch()
 
-    const isAuth = useSelector(state => state.auth.isAuth)
-    const isLoading = useSelector(state => state.auth.isLoading)
+    const stateAuth = useSelector(state => state.auth)
+    const { isAuth, isLoading, isError401 } = stateAuth
+    // const isLoading = useSelector(state => state.auth.isLoading)
 
     const onFinish = (values) => {
       dispatch(login(values))
@@ -31,9 +32,18 @@ const FormLogin = () => {
     return (
         <div className = { styles.formWrap }>
 
-            <Typography.Title level={1} style={{ margin: 0, textAlign: 'center', paddingBottom: 100 }}>
+            <Typography.Title level={1}  style={{ margin: 0, textAlign: 'center', paddingBottom: 100 }}>
                 Пожалуйста, авторизуйтесь в системе!
             </Typography.Title>
+
+            {
+                isError401 
+                    ? <Typography.Text strong type="danger" style={{ margin: '0 auto', textAlign: 'center', display: 'block'}}>
+                        Неверный логин или пароль!
+                    </Typography.Text>
+                    : <div className = {styles.gag}></div>
+                }
+            
 
             <Form
                 name="basic"

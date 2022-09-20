@@ -1,16 +1,7 @@
-import api from "../http";
-
+import apiAuth from "../http/apiAuth";
 
 export default class AuthService {
     static async login(username, password) {
-        return api.post(`/token/`, { username, password })
-    }
-
-    // static async registration(username, password) {
-    //     return api.post(`/token/`, { username, password })
-    // }
-
-    static async logout() {
-        return api.post(`/logout/`,)
+        return apiAuth.post(`/token/`, { username, password })
     }
 }

@@ -23,7 +23,7 @@ const Header = () => {
                         ? 
                             <div className = { styles.iconWrap}>
                                 <UserOutlined style = {{ fontSize: '28px', color: '#efefef' }}/>
-                                <Typography style = {{ color: '#efefef' }}>
+                                <Typography style = {{  color: '#efefef' }}>
                                     {username}
                                 </Typography>
                             </div>

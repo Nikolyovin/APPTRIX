@@ -1,14 +1,16 @@
 import axios from "axios"
-import { API_AUTH } from "../http"
+import { API_AUTH } from "../http/apiAuth"
 import AuthService from "../services/AuthService"
 
 const SET_USER_DATA = "SET_USER_DATA"
-const IS_SHHOW_LOADING = "IS_SHHOW_LOADING"
+const IS_SHOW_LOADING = "IS_SHOW_LOADING"
+const IS_SHOW_ERROR_401 = "IS_SHOW_ERROR_401"
 
 const initialState = { 
     username: null,
     isAuth: false,
     isLoading: false,
+    isError401: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -19,10 +21,16 @@ const authReducer = (state = initialState, action) => {
                ...action.payload
             }
         
-            case IS_SHHOW_LOADING:
+            case IS_SHOW_LOADING:
             return {
                ...state,
                isLoading: action.isLoading
+            }
+
+            case IS_SHOW_ERROR_401:
+            return {
+               ...state,
+               isError401: action.isError401
             }
 
         default:
@@ -31,7 +39,8 @@ const authReducer = (state = initialState, action) => {
 }
 
 export const setAuthUserData = (username, isAuth) => ({ type: SET_USER_DATA, payload: { username, isAuth } })
-export const isShowLoading = (isLoading) => ({type: IS_SHHOW_LOADING, isLoading})
+export const isShowLoading = (isLoading) => ({type: IS_SHOW_LOADING, isLoading})
+export const isShowError401 = (isError401) => ({type: IS_SHOW_ERROR_401, isError401})
 
 export const login = ({ username, password }) => async (dispatch) => {
     try {
@@ -39,9 +48,11 @@ export const login = ({ username, password }) => async (dispatch) => {
         localStorage.setItem('access', response.data.access)
         localStorage.setItem('refresh', response.data.refresh)
         localStorage.setItem('username', username)
+        dispatch(isShowError401(false))
         dispatch(setAuthUserData(username, true))
     } catch (e) {
         console.log(e)
+        if (e.response.status === 401) dispatch(isShowError401(true))
     }
 }
 
@@ -66,17 +77,15 @@ export const checkAuth = () => async (dispatch) => {
             refresh: localStorage.getItem('refresh')
         },
         { withCredentials: true })
-        
+
         localStorage.setItem('access', response.data.access)
         const username = localStorage.getItem('username')
-        dispatch(setAuthUserData(username,  true))
-        
+        dispatch(isShowError401(false))
+        dispatch(setAuthUserData(username,  true)) 
     } catch (e) {
         console.log(e)
     } finally {
-        
         dispatch(isShowLoading(false))
-       
     }
 }
 
