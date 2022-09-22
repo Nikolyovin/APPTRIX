@@ -2,18 +2,17 @@ import axios from "axios"
 
 const TOKEN = 'perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL' 
 // export const API_USERS = 'https://demo-apptrix.myjetbrains.com/youtrack/api/'
-export const API_USERS = '/youtrack/api/admin'
+export const API = '/youtrack/api'
 
-const apiUsers = axios.create({
+const api = axios.create({
     withCredentials: true,
-    baseURL: API_USERS,
-    // baseURL: '/proxy',
+    baseURL: API,
 })
 
 //интерцептор подставляет в заголовки access_token
-apiUsers.interceptors.request.use((config) => {
+api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${TOKEN}`
     return config
 })
 
-export default apiUsers
+export default api

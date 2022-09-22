@@ -1,0 +1,12 @@
+.title {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.span {
+    font-weight: 600;
+}
+
+.loadingWrap{
+    margin: auto auto;
+}

@@ -10,15 +10,14 @@ const FormLogin = () => {
 
     const stateAuth = useSelector(state => state.auth)
     const { isAuth, isLoading, isError401 } = stateAuth
-    // const isLoading = useSelector(state => state.auth.isLoading)
 
     const onFinish = (values) => {
       dispatch(login(values))
     }
 
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo)
-    }
+    // const onFinishFailed = (errorInfo) => {
+    //   console.log('Failed:', errorInfo)
+    // }
 
     console.log('erp_user')
     console.log('12qwaszx12qwaszx')

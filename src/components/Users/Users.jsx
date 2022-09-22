@@ -1,14 +1,14 @@
 import { Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
-import { requestUser, requestUsers } from '../../redux/users-reducer'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { setCurrentUser, requestUsers } from '../../redux/users-reducer'
 import styles from './Users.module.css'
 
 const Users = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const state = useSelector(state => state)
   const users = useSelector(state => state.users.users)
   const isAuth = useSelector(state => state.auth.isAuth)
 
@@ -39,10 +39,11 @@ const Users = () => {
     },
   ]
 
-  const onRow = (record, rowIndex) => {
+  const onRow = (record) => {
     return {
       onClick: event => {
-        dispatch(requestUser(record.id))
+        navigate(  `/users/${record.id}`)
+        dispatch(setCurrentUser(record))
       }
     }
   }
@@ -55,7 +56,9 @@ const Users = () => {
         rowKey = "id" 
         dataSource = { users } 
         columns = { columns } 
-        onRow = { onRow }/>
+        onRow = { onRow }
+        pagination={false}
+      />
     </div>
   )
 }

@@ -1,10 +1,12 @@
 import { UserService, UsersService } from "../services/UserService"
 
 const SET_USERS = "SET_USERS"
+const SET_CURRENT_USER = "SET_CURRENT_USER"
 
 
 const initialState = { 
-    users: []
+    users: [],
+    currentUser: {}
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -15,12 +17,19 @@ const usersReducer = (state = initialState, action) => {
                users: action.users 
             }
 
+        case SET_CURRENT_USER:
+            return {
+                ...state,
+                currentUser: action.payload
+            }
+
         default:
             return state 
     }
 }
 
 export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setCurrentUser = (payload) => ({ type: SET_CURRENT_USER, payload })
 
 export const requestUsers = () => async (dispatch) => {
     try {
@@ -35,7 +44,7 @@ export const requestUsers = () => async (dispatch) => {
 export const requestUser = (userId) => async (dispatch) => {
     try {
         const response = await UserService.getUser(userId)
-        console.log('response:', response)
+        dispatch(setCurrentUser(response.data))
     } catch (e) {
         console.log(e)
     }

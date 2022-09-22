@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkAuth } from './redux/auth-reducer';
 import FormLogin from './components/FormLogin/FormLogin';
+import UserCard from './components/Users/UserCard/UserCard';
 
 function App() {
   const dispatch = useDispatch()
@@ -24,6 +25,7 @@ function App() {
       <div className="container">
         <Sidebar/>
         <Routes>
+          <Route path='/users/:userId' element = { <UserCard /> } />
           <Route path="/users/*" element={<Users />} />
           <Route path="/taskList/*" element={<TaskList />} />
           <Route path="/login/*" element={<FormLogin />} />
