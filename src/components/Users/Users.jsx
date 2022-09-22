@@ -11,7 +11,7 @@ const Users = () => {
 
   const users = useSelector(state => state.users.users)
   const isAuth = useSelector(state => state.auth.isAuth)
-
+  console.log('users',users);
   useEffect(() => {
     dispatch(requestUsers())
   }, [ ])

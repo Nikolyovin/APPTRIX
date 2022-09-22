@@ -1,4 +1,4 @@
-import { Table } from 'antd';
+import { Input, Table } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './TaskList.module.css'
@@ -32,6 +32,7 @@ const TaskList = () => {
 
   return (
     <div className = { styles.tableWrap }>
+      <Input placeholder="search for name" />
       <Table 
         rowKey = "id" 
         dataSource = { tasks } 

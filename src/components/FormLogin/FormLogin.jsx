@@ -50,7 +50,7 @@ const FormLogin = () => {
                 wrapperCol={{span: 6,}}
                 initialValues={{remember: true}}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
+                // onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
             <Form.Item
