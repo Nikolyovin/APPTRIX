@@ -30,7 +30,14 @@ export const requestTasks = () => async (dispatch) => {
     }
 }
 
-
-
+export const requestFoundTasks = (payload) => async (dispatch) => {
+    try {
+        const response = await TasksService.getFoundTasks(payload)
+        console.log('response:', response)
+        dispatch(setTasks(response.data))
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 export default tasksReducer

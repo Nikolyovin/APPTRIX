@@ -57,7 +57,7 @@ const Users = () => {
         dataSource = { users } 
         columns = { columns } 
         onRow = { onRow }
-        pagination={false}
+        pagination = { false }
       />
     </div>
   )

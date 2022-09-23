@@ -1,16 +1,25 @@
-import { Input, Table } from 'antd';
-import { useEffect } from 'react';
+import { Input, Popconfirm, Table } from 'antd';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './TaskList.module.css'
-import { requestTasks } from '../../redux/tasks-reducer'
+import { requestFoundTasks, requestTasks } from '../../redux/tasks-reducer'
 
 const TaskList = () => {
   const dispatch = useDispatch()
   const tasks = useSelector(state => state.tasks.tasks)
-  console.log('tasks:', tasks);
+
+  const [ inputValue, setInputValue ] = useState('')
+
+  const { Search } = Input
+  
   useEffect(() => {
     dispatch(requestTasks())
   }, [ ])
+
+  const handleRoute = (key) => {
+    console.log('sfsfsfsfsfsfsfsf');
+    
+  }
 
   const columns = [
     {
@@ -28,11 +37,29 @@ const TaskList = () => {
       dataIndex: ['project', 'name'],
       key: 'project',
     },
+    {
+      title: 'Time sheet',
+      dataIndex: 'timeSheet',
+      render: (_, record) =>
+          <Popconfirm title="Sure to open time sheet?" onConfirm={() => handleRoute(record.key)}>
+            <a>Timesheet</a>
+          </Popconfirm>
+    },
   ]
+
+  const changeInput = (e) => {
+    const length = e.target.value.length
+    if (length > 2) dispatch(requestFoundTasks(e.target.value))
+    if (length == 0) dispatch(requestTasks())
+  }
 
   return (
     <div className = { styles.tableWrap }>
-      <Input placeholder="search for name" />
+      <Search 
+        placeholder="search for name" 
+        onChange = {changeInput} 
+        // loading 
+      />
       <Table 
         rowKey = "id" 
         dataSource = { tasks } 
