@@ -2,20 +2,21 @@ import { TasksService } from "../services/TasksService "
 
 const SET_TASKS = "SET_TASKS"
 
-const initialState = { 
+const initialState = {
     tasks: [],
+    timeSheet: null
 }
 
 const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_TASKS:
             return {
-               ...state,
-               tasks: action.tasks 
+                ...state,
+                tasks: action.tasks
             }
 
         default:
-            return state 
+            return state
     }
 }
 
@@ -35,6 +36,16 @@ export const requestFoundTasks = (payload) => async (dispatch) => {
         const response = await TasksService.getFoundTasks(payload)
         console.log('response:', response)
         dispatch(setTasks(response.data))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const requestTimeSheet = (payload) => async (dispatch) => {
+    try {
+        const response = await TasksService.getTimeSheet(payload)
+        console.log('response:', response)
+        // dispatch(setTasks(response.data))
     } catch (e) {
         console.log(e)
     }
