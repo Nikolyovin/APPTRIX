@@ -9,7 +9,7 @@ export class TasksService {
         // return api.get(`/issues?fields=id,summary,project(name)&query=project:${value}`)
     }
     static async getTimeSheet(value) {
-        return api.get(`/workItems/${value}?fields=author,duration`)
+        return api.get(`/workItems?fields=created,duration(presentation,minutes),author(name),creator(name),id`)
         // return api.get(`/issues?fields=id,summary,project(name)&query=project:${value}`)
         // https://example.youtrack.cloud/api/workItems/115-2?fields=created,duration(presentation,minutes),author(name),creator(name),date,id
     }

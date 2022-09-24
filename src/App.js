@@ -26,7 +26,7 @@ function App() {
       <div className="container">
         <Sidebar />
         <Routes>
-          <Route path='/users/:taskId' element={<WorkItems />} />
+          <Route path='/taskList/:workItems' element={<WorkItems />} />
           <Route path='/users/:userId' element={<UserCard />} />
           <Route path="/users/*" element={<Users />} />
           <Route path="/taskList/*" element={<TaskList />} />

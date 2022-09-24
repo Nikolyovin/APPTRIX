@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './TaskList.module.css'
 import { requestFoundTasks, requestTasks, requestTimeSheet } from '../../redux/tasks-reducer'
+import { useNavigate } from 'react-router-dom';
 
 const TaskList = () => {
   const dispatch = useDispatch()
   const tasks = useSelector(state => state.tasks.tasks)
-  console.log('tasks', tasks);
   const { Search } = Input
+
+  const navigate = useNavigate()
   
   useEffect(() => {
     dispatch(requestTasks())
@@ -16,6 +18,7 @@ const TaskList = () => {
 
   const handleRoute = (record) => {
     dispatch(requestTimeSheet(record.id))
+    navigate(  `/taskList/:workItems`)
   }
 
   const columns = [
