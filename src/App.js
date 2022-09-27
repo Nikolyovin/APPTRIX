@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { checkAuth } from './redux/auth-reducer';
 import FormLogin from './components/FormLogin/FormLogin';
 import UserCard from './components/Users/UserCard/UserCard';
+import WorkItems from './components/WorkItems/WorkItems';
 
 function App() {
   const dispatch = useDispatch()
@@ -21,11 +22,12 @@ function App() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="container">
-        <Sidebar/>
+        <Sidebar />
         <Routes>
-          <Route path='/users/:userId' element = { <UserCard /> } />
+          <Route path='/taskList/:workItems' element={<WorkItems />} />
+          <Route path='/users/:userId' element={<UserCard />} />
           <Route path="/users/*" element={<Users />} />
           <Route path="/taskList/*" element={<TaskList />} />
           <Route path="/login/*" element={<FormLogin />} />

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const TOKEN = 'perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL' 
+const TOKEN = 'perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL'
 export const API = '/youtrack/api'
 
 const api = axios.create({

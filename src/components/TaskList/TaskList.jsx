@@ -2,23 +2,23 @@ import { Input, Popconfirm, Table } from 'antd';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './TaskList.module.css'
-import { requestFoundTasks, requestTasks } from '../../redux/tasks-reducer'
+import { requestFoundTasks, requestTasks, requestTimeSheet } from '../../redux/tasks-reducer'
+import { useNavigate } from 'react-router-dom';
 
 const TaskList = () => {
   const dispatch = useDispatch()
   const tasks = useSelector(state => state.tasks.tasks)
-
-  const [ inputValue, setInputValue ] = useState('')
-
   const { Search } = Input
+
+  const navigate = useNavigate()
   
   useEffect(() => {
     dispatch(requestTasks())
   }, [ ])
 
-  const handleRoute = (key) => {
-    console.log('sfsfsfsfsfsfsfsf')
-    
+  const handleRoute = (record) => {
+    dispatch(requestTimeSheet(record.id))
+    navigate(  `/taskList/:workItems`)
   }
 
   const columns = [
@@ -41,7 +41,7 @@ const TaskList = () => {
       title: 'Time sheet',
       dataIndex: 'timeSheet',
       render: (_, record) =>
-          <Popconfirm title="Sure to open time sheet?" onConfirm={() => handleRoute(record.key)}>
+          <Popconfirm title="Sure to open time sheet?" onConfirm={() => handleRoute(record)}>
             <a>Timesheet</a>
           </Popconfirm>
     },
