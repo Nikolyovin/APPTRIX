@@ -18,7 +18,7 @@ const TaskList = () => {
 
   const handleRoute = (record) => {
     dispatch(requestTimeSheet(record.id))
-    navigate(  `/taskList/:workItems`)
+    navigate( `/taskList/:workItems`)
   }
 
   const columns = [
