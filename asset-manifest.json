@@ -1,19 +1,15 @@
 {
   "files": {
-    "main.css": "/APPTRIX/static/css/main.750df74b.css",
-    "main.js": "/APPTRIX/static/js/main.3b1d6637.js",
-    "static/js/48.cf0bfeaa.chunk.js": "/APPTRIX/static/js/48.cf0bfeaa.chunk.js",
-    "static/js/279.796b1663.chunk.js": "/APPTRIX/static/js/279.796b1663.chunk.js",
+    "main.css": "/APPTRIX/static/css/main.4fec5bcf.css",
+    "main.js": "/APPTRIX/static/js/main.ac55be94.js",
     "static/js/924.9a97f904.chunk.js": "/APPTRIX/static/js/924.9a97f904.chunk.js",
     "index.html": "/APPTRIX/index.html",
-    "main.750df74b.css.map": "/APPTRIX/static/css/main.750df74b.css.map",
-    "main.3b1d6637.js.map": "/APPTRIX/static/js/main.3b1d6637.js.map",
-    "48.cf0bfeaa.chunk.js.map": "/APPTRIX/static/js/48.cf0bfeaa.chunk.js.map",
-    "279.796b1663.chunk.js.map": "/APPTRIX/static/js/279.796b1663.chunk.js.map",
+    "main.4fec5bcf.css.map": "/APPTRIX/static/css/main.4fec5bcf.css.map",
+    "main.ac55be94.js.map": "/APPTRIX/static/js/main.ac55be94.js.map",
     "924.9a97f904.chunk.js.map": "/APPTRIX/static/js/924.9a97f904.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.750df74b.css",
-    "static/js/main.3b1d6637.js"
+    "static/css/main.4fec5bcf.css",
+    "static/js/main.ac55be94.js"
   ]
 }
