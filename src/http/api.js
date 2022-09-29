@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const TOKEN = 'perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL'
-export const API = '/youtrack/api'
+export const API = 'https://demo-apptrix.myjetbrains.com/youtrack/api/'
 
 const api = axios.create({
     withCredentials: true,
