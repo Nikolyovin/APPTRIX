@@ -1,8 +1,10 @@
-import { Table } from 'antd'
-import { useEffect } from 'react'
+import { Button, Table } from 'antd'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useReactToPrint } from 'react-to-print'
 import { requestTimeSheet } from '../../redux/tasks-reducer'
 import styles from './WorkItems.module.css'
+
 
 const WorkItems = () => {
   const dispatch = useDispatch()
@@ -29,17 +31,22 @@ const WorkItems = () => {
       dataIndex: 'id',
       key: 'id',
     },
-        
   ]
-//ufdyjfsdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <div className = { styles.workItemsWrap }>
       <Table 
         rowKey = "name" 
         dataSource = { workItems } 
         columns = { columns } 
+        ref={componentRef}
       />
-      <Button>Export PDF</Button>
+      <Button onClick={handlePrint}>Export PDF</Button>
     </div>
 
   )
