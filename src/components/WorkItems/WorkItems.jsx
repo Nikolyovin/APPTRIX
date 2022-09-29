@@ -1,8 +1,9 @@
-import { Button, Table } from 'antd'
+import { Button, Spin, Table } from 'antd'
 import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useReactToPrint } from 'react-to-print'
 import { requestTimeSheet } from '../../redux/tasks-reducer'
+import Loading from '../common/Loading'
 import styles from './WorkItems.module.css'
 
 
@@ -38,6 +39,8 @@ const WorkItems = () => {
     content: () => componentRef.current,
   });
 
+  if (workItems.length == 0) return  <Loading/>
+
   return (
     <div className = { styles.workItemsWrap }>
       <Table 
@@ -45,8 +48,11 @@ const WorkItems = () => {
         dataSource = { workItems } 
         columns = { columns } 
         ref={componentRef}
+        pagination={{ position: ['bottomCenter'] , showSizeChanger: false }}
       />
-      <Button onClick={handlePrint}>Export PDF</Button>
+      <div className = { styles.buttonWrap }>
+        <Button type="primary" onClick={handlePrint}>Export PDF</Button>
+      </div>
     </div>
 
   )

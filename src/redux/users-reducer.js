@@ -1,4 +1,4 @@
-import { UserService, UsersService } from "../services/UserService"
+import { UsersService } from "../services/UserService"
 
 const SET_USERS = "SET_USERS"
 const SET_CURRENT_USER = "SET_CURRENT_USER"
@@ -43,7 +43,7 @@ export const requestUsers = () => async (dispatch) => {
 
 export const requestUser = (userId) => async (dispatch) => {
     try {
-        const response = await UserService.getUser(userId)
+        const response = await UsersService.getUser(userId)
         dispatch(setCurrentUser(response.data))
     } catch (e) {
         console.log(e)
