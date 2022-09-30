@@ -24,14 +24,14 @@ const Header = () => {
                             <div className = { styles.iconWrap}>
                                 <UserOutlined style = {{ fontSize: '28px', color: '#efefef' }}/>
                                 <Typography style = {{  color: '#efefef' }}>
-                                    {username}
+                                    {username} 
                                 </Typography>
                             </div>
                         : 
                             <div className = { styles.gagLeft }></div>
                 }
                 
-                <h4 className = { styles.title }>APPTRIX TEST TASK</h4>
+                <h4 className = { styles.title }>APPTRIX TEST TASK v1</h4>
 
                 {
                     isAuth 
