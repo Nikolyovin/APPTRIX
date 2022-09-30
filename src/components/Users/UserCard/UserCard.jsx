@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './UserCard.module.css'
 import { requestUser, setCurrentUser } from '../../../redux/users-reducer'
 import { useParams } from 'react-router-dom';
+import Loading from '../../common/Loading';
 
 const UserCard = () => {
     const dispatch = useDispatch()
     const { userId } = useParams()
 
-    // const state = useSelector(state => state)
     const currentUser = useSelector(state => state.users.currentUser)
     const { $type, email, id, login, name } = currentUser
 
@@ -16,7 +16,7 @@ const UserCard = () => {
         dispatch(requestUser(userId))
     }
     
-    if (Object.keys(currentUser).length == 0) return  (<div className = { styles.loadingWrap }> <Spin size='large' tip="Loading..."/> </div>)
+    if (Object.keys(currentUser).length == 0) return  <Loading/>
 
     return (
         <Card title="Карточка пользователя"  style={{ width: '100%' }}>

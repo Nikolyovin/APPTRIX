@@ -1,8 +1,9 @@
-import { Table } from 'antd'
+import { Spin, Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { setCurrentUser, requestUsers } from '../../redux/users-reducer'
+import Loading from '../common/Loading'
 import styles from './Users.module.css'
 
 const Users = () => {
@@ -50,6 +51,8 @@ const Users = () => {
   
   if (!isAuth) return <Navigate to = { '/login' } />
 
+  if (users.length == 0) return  <Loading/>
+
   return (
     <div className = { styles.usersWrap } >
       <Table 
@@ -58,6 +61,7 @@ const Users = () => {
         columns = { columns } 
         onRow = { onRow }
         pagination = { false }
+        
       />
     </div>
   )

@@ -1,0 +1,8 @@
+.workItemsWrap {
+    width: 100%;
+}
+
+.buttonWrap {
+    display: flex;
+    justify-content: center;
+}

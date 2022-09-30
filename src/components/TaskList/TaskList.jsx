@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './TaskList.module.css'
 import { requestFoundTasks, requestTasks, requestTimeSheet } from '../../redux/tasks-reducer'
 import { useNavigate } from 'react-router-dom';
+import Loading from '../common/Loading';
 
 const TaskList = () => {
   const dispatch = useDispatch()
@@ -53,6 +54,8 @@ const TaskList = () => {
     if (length == 0) dispatch(requestTasks())
   }
 
+  if (tasks.length == 0) return  <Loading/>
+
   return (
     <div className = { styles.tableWrap }>
       <Search 
@@ -64,7 +67,7 @@ const TaskList = () => {
         rowKey = "id" 
         dataSource = { tasks } 
         columns = { columns } 
-        pagination={{ position: 'bottomCenter' }}
+        pagination={{ position: ['bottomCenter'] , showSizeChanger: false }}
         // onRow = { onRow }
       />
     </div>
